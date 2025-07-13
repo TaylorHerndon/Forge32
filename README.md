@@ -1,4 +1,4 @@
-# 🔥 Forge32
+# 🏭 Forge32
 
 **Forge32** is a modular, scalable IoT framework built on a network of ESP32 microcontrollers. It enables real-time monitoring and control of distributed sensors and output devices through a dynamically generated web dashboard — all hosted on a central ESP32 hub.
 

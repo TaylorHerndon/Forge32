@@ -1,0 +1,122 @@
+header {
+  background-color: #141414;
+  padding: 1px;
+  text-align: center;
+}
+
+body {
+  background-color: #1c1c1c;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 0px 20px;
+  margin: auto;
+}
+
+h1 {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-weight: lighter;
+  color: white;
+  margin-top: 20px;
+}
+
+h2 {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-weight: lighter;
+  color: white;
+  margin-top: 12px;
+}
+
+.title {
+  font-family: 'Segoe UI';
+  font-weight: lighter;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+
+.white-border {
+  border: solid 2px #666;
+  border-radius: 8px;
+  padding: 0px 10px;
+  margin: 4px 0;
+}
+
+.button-dark {
+  background-color: #333; 
+  border: solid 2px #555;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma;
+  cursor: pointer;
+}
+
+.button-white {
+  background-color: #c7c7c7; 
+  border: solid 2px #8c8c8c;
+  border-radius: 8px;
+  color: black;
+  padding: 8px 16px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma;
+  cursor: pointer;
+}
+
+.button-blue {
+  background-color: #004ea2;
+  border: solid 2px #035ab7;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma;
+  cursor: pointer;
+}
+
+.button-green {
+  background-color: #4CAF50;
+  border: solid 2px #29782c;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma;
+  cursor: pointer;
+}
+
+.button-red {
+  background-color: #92241d;
+  border: solid 2px #682b2b;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma;
+  cursor: pointer;
+}
