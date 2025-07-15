@@ -39,7 +39,7 @@ Engineers, technicians, and hobbyists seeking a scalable, low-cost IoT control a
 
 - **Hub ESP32**:
     - Hosts the web dashboard (HTML/CSS/JS)
-    - Communicates with nodes via [[Forge32 TCP Protocol]]
+    - Communicates with nodes via [Forge32 TCP Protocol](/TCP%20Protocol.md)
     - Performs minimal data processing
     - Handles real-time output control and event reception
     
@@ -59,15 +59,15 @@ Engineers, technicians, and hobbyists seeking a scalable, low-cost IoT control a
 
 ## 3. 🧰 Technology Stack
 
-|Layer|Stack / Tool|
-|---|---|
-|Microcontroller|ESP32 (Hub + Nodes)|
-|Language|C++ (Arduino Framework)|
-|Communication|Custom TCP Protocol over Wi-Fi|
-|Dashboard|HTML/CSS/JS served via HTTP|
-|JSON Parsing|ArduinoJson (StaticJsonDocument)|
-|File Storage|SPIFFS or LittleFS (Hub only)|
-|IDE|PlatformIO (recommended)|
+|Layer              |Stack / Tool                       |
+|-------------------|-----------------------------------|
+|Micro-Controller   |ESP32 (Hub + Nodes)                |
+|Language           |C++ (Arduino Framework)            |
+|Communication      |Custom TCP Protocol over Wi-Fi     |
+|Dashboard          |HTML/CSS/JS served via HTTP        |
+|JSON Parsing       |ArduinoJson (StaticJsonDocument)   |
+|File Storage       |LittleFS                           |
+|IDE                |PlatformIO (recommended)           |
 
 ---
 

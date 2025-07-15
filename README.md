@@ -5,13 +5,13 @@
 ---
 ## 📌 Features
 
-- 📡 Custom TCP protocol for efficient node-hub communication
-- 🌐 Web dashboard served directly from the hub ESP32
-- 📊 Historical data queries from sensor nodes
-- ⚙️ Real-time control of output devices
-- 🔁 Rolling buffer strategy for local data storage
-- 🔔 Event broadcasting from nodes to hub
-- 🧱 Easily extensible with new sensor/output types
+- 📡 Custom TCP protocol for efficient node-hub communication
+- 🌐 Web dashboard served directly from the hub ESP32
+- 📊 Historical data queries from sensor nodes
+- ⚙️ Real-time control of output devices
+- 🔁 Rolling buffer strategy for local data storage
+- 🔔 Event broadcasting from nodes to hub
+- 🧱 Easily extensible with new sensor/output types
 
 ---
 ## 🗂️ Project Structure
@@ -71,7 +71,7 @@ forge32-node/
 ### Build & Upload
 
 1. Clone the repository:
-   ```bash
+```bash
    git clone https://github.com/yourusername/forge32.git
 ```
 
@@ -83,8 +83,8 @@ forge32-node/
 ---
 # Software Design
 
-- 📘 [[SDD]]
-- 📡 [[Forge32 TCP Protocol]]
+- 📘 [SDD](/SDD.md)
+- 📡 [Forge32 TCP Protocol](/TCP%20Protocol.md)
 
 ---
 ## 📄 License

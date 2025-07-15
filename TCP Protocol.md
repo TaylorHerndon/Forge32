@@ -31,8 +31,10 @@
 # </> Protocol Syntax
 ### 🔹Node → Hub: `REGISTER`
 Describes node capabilities in JSON format.
+
+`REGISTER`
 ```JSON
-REGISTER {
+{
     "id": "node123",
     "capabilities": {
         "tempSensor": {
