@@ -1,13 +1,19 @@
 #include <Arduino.h>
-#include <forge32-protocol.h>
-#include <forge32-wifi.h>
-#include <logger.h>
-#include <passwords.h>
 #include <WebServer.h>
 #include <LittleFS.h>
+#include "time.h"
+
+#include "forge32-protocol.h"
+#include "forge32-wifi.h"
+#include "passwords.h"
+#include "logger.h"
 
 #define FORMAT_LITTLEFS_IF_FAILED true
 #define WIFI_STATUS_PIN BUILTIN_LED
+
+#define NTP_SERVER "pool.ntp.org"
+#define NTP_SERVER_2 "time.nist.gov"
+#define TIMEZONE_OFFSET -28800
 
 #define OUTPUT_0 GPIO_NUM_23
 
@@ -15,6 +21,9 @@ WebServer server(80);
 
 void InitLittleFS();
 void InitWebServer();
+void InitTime();
+
+String getLocalTimeString();
 
 void setup() {
     // Initialize serial communication
@@ -39,11 +48,21 @@ void setup() {
     );
     if (wifiStatus) { digitalWrite(WIFI_STATUS_PIN, HIGH); }
 
+    // Initialize time
+    InitTime();
+
     // Initialize LittleFS
     InitLittleFS();
 
     // // Initialize web server
     InitWebServer();
+}
+
+#pragma region Init Functions
+void InitTime() {
+    configTime(TIMEZONE_OFFSET, 3600, NTP_SERVER, NTP_SERVER_2);
+    Log("TIME", "NTP Time Configured");
+    Log("TIME", getLocalTimeString());
 }
 
 void InitLittleFS() {
@@ -97,7 +116,19 @@ void InitWebServer() {
     Log("HTTP", "HTTP server started on port 80");
 }
 
+#pragma region General Functions
+String getLocalTimeString() {
+    struct tm timeinfo;
+    if (!getLocalTime(&timeinfo)) {
+        return "";
+    }
+    char buffer[64];
+    strftime(buffer, sizeof(buffer), "%A, %B %d %Y %H:%M:%S", &timeinfo);
+    return String(buffer);
+}
 
 void loop() {
     server.handleClient();
+    Log("TIME", getLocalTimeString());
+    delay(1000); // Delay to avoid flooding the log
 }
