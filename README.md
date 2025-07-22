@@ -20,25 +20,21 @@
 
 ```
 forge32-hub/
-├── include/
-│   └── protocol.h              # Shared protocol definitions
-├── lib/
-│   └── dashboard/              # HTML/CSS/JS files for dashboard
-│       ├── index.html
-│       ├── style.css
-│       └── script.js
 ├── src/
-│   ├── main.cpp                # Entry point: sets up Wi-Fi, server, etc.
-│   ├── tcp_server.cpp          # Handles TCP communication with nodes
-│   ├── dashboard_server.cpp    # Serves the web dashboard
-│   ├── node_registry.cpp       # Tracks registered nodes and capabilities
-│   └── event_handler.cpp       # Handles incoming events from nodes
-├── data/                       # SPIFFS or LittleFS content (served files)
+│   |── main.cpp
+|   |── forge32-protocol.cpp
+|   |── forge32-wifi.cpp
+|   └── logger.cpp
+├── data/
 │   ├── index.html
 │   ├── style.css
-│   └── script.js
-├── platformio.ini              # PlatformIO project config
-└── README.md
+│   └── script.js   
+├── include/
+|   |── forge32-protocol.h
+|   |── forge32-wifi.h
+|   |── logger.h
+│   └── passwords.h           # Must be added by user
+└── platformio.ini
 ```
 
 ### Node ESP32

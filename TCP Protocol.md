@@ -82,14 +82,3 @@ Broadcasts a triggered event.
 ```
 EVENT id=node123;field=motionSensor;event=motionDetected;\n
 ```
-### 🔹Hub → Node: `QUERY_EVENTS`
-Queries node for event information.
-```
-QUERY_EVENTS id=node123;\n
-```
-
-### 🔹 Node → Hub: `EVENT_LIST`
-Returns a list of events that the node might broadcast based on local configurations.
-```
-EVENT_LIST id=node123;events=motionDetected,tempThresholdExceeded;\n
-```

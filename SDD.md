@@ -78,20 +78,15 @@ Engineers, technicians, and hobbyists seeking a scalable, low-cost IoT control a
 ```
 forge32-hub/
 ├── src/
-│   ├── main.cpp
-│   ├── tcp_server.cpp
-│   ├── dashboard_server.cpp
-│   ├── node_registry.cpp
-│   └── event_handler.cpp
-├── lib/dashboard/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+│   └── main.cpp
 ├── data/
 │   ├── index.html
 │   ├── style.css
-│   └── script.js
+│   └── script.js   
 ├── include/
+|   ├── tcp_server.cpp
+│   ├── dashboard_server.cpp
+│   ├── node_registry.cpp
 │   └── protocol.h
 └── platformio.ini
 ```
