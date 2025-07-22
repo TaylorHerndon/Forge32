@@ -56,6 +56,8 @@ void setup() {
 
     // // Initialize web server
     InitWebServer();
+
+    Log("SYSTEM", "ESP Setup complete");
 }
 
 #pragma region Init Functions
@@ -76,32 +78,50 @@ void InitLittleFS() {
 void InitWebServer() {
 
     server.on("/", HTTP_GET, []() {
+        Log("HTTP", "Serving index.html");
         File f = LittleFS.open("/index.html", "r");
         server.send(200, "text/html", f.readString());
         f.close();
     });
 
     server.on("/style.css", HTTP_GET, []() {
+        Log("HTTP", "Serving style.css");
         File f = LittleFS.open("/style.css", "r");
         server.send(200, "text/css", f.readString());
         f.close();
     });
 
     server.on("/script.js", HTTP_GET, []() {
+        Log("HTTP", "Serving script.js");
         File f = LittleFS.open("/script.js", "r");
         server.send(200, "application/javascript", f.readString());
         f.close();
     });
 
+    server.on("/jquery-3.7.1.min.js", HTTP_GET, []() {
+        Log("HTTP", "Serving jquery-3.7.1.min.js");
+        File f = LittleFS.open("/jquery-3.7.1.min.js", "r");
+        server.send(200, "text/javascript", f.readString());
+        f.close();
+    });
+
+    server.on("/servertime", HTTP_GET, []() {
+        Log("HTTP", "Serving servertime.");
+        String currentTime = getLocalTimeString();
+        if (currentTime.isEmpty()) {
+            server.send(500, "text/plain", "N/A");
+        } else {
+            server.send(200, "text/plain", currentTime);
+        }
+    });
+
     server.on("/connect_click", HTTP_GET, []() {
-        // Handle button click
         Log("HTTP", "Connect clicked");
         server.send(200, "text/plain", "Connect clicked successfully");
         digitalWrite(OUTPUT_0, HIGH); 
     });
 
     server.on("/disconnect_click", HTTP_GET, []() {
-        // Handle disconnect button click
         Log("HTTP", "Disconnect clicked");
         server.send(200, "text/plain", "Disconnected clicked successfully");
         digitalWrite(OUTPUT_0, LOW); 
@@ -129,6 +149,4 @@ String getLocalTimeString() {
 
 void loop() {
     server.handleClient();
-    Log("TIME", getLocalTimeString());
-    delay(1000); // Delay to avoid flooding the log
 }

@@ -6,6 +6,7 @@
     <title>Forge32 Dashboard</title>
     <link rel="icon" type="image/x-icon" href="static/favicon.ico">
     <link rel="stylesheet" href="style.css">
+    <script src="/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <header>
@@ -15,17 +16,21 @@
         <section id="overview" class="white-border">
             <h2>System Overview</h2>
             <div id="status">
+                <p>Current Time: <span id="current-time">N/A</span></p>
                 <p>Connected Devices: <span id="device-count">0</span></p>
                 <p>Last Registration: <span id="last-registration">N/A</span></p>
             </div>
         </section>
         <section id="controls" class="white-border">
             <h2>Controls</h2>
-            <button id="connect-btn" class="button-green" onclick="sendButtonClick()">Connect</button>
+            <button id="connect-btn" class="button-green" onclick="connectButtonClick()">Connect</button>
             <button id="disconnect-btn" class="button-dark" onclick="disconnectButtonClick()">Disconnect</button>
             <br></br>
         </section>
     </main>
     <script src="/script.js"></script>
+    <script>
+        setInterval(updateCurrentTime, 1000);
+    </script>
 </body>
 </html>
