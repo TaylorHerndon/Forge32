@@ -2,6 +2,7 @@
 #include <WebServer.h>
 #include <LittleFS.h>
 #include "time.h"
+#include <vector>
 
 #include "forge32-protocol.h"
 #include "forge32-wifi.h"
@@ -17,11 +18,16 @@
 
 #define OUTPUT_0 GPIO_NUM_23
 
+#define INPUT_0 GPIO_NUM_36
+#define INPUT_1 GPIO_NUM_39
+#define INPUT_2 GPIO_NUM_34
+
 WebServer server(80);
 
 void InitLittleFS();
 void InitWebServer();
 void InitTime();
+std::vector<bool> GetInputStates();
 
 String getLocalTimeString();
 
@@ -33,6 +39,9 @@ void setup() {
     //Initialize GPIO
     pinMode(WIFI_STATUS_PIN, OUTPUT);
     pinMode(OUTPUT_0, OUTPUT);
+    pinMode(INPUT_0, INPUT);
+    pinMode(INPUT_1, INPUT);
+    pinMode(INPUT_2, INPUT);
 
     // GPIO Default State
     digitalWrite(WIFI_STATUS_PIN, LOW);
@@ -40,8 +49,8 @@ void setup() {
 
     // Initialize TCP connection
     bool wifiStatus = ConnectToWifi(
-        TH_SSID, 
-        TH_PASSWORD, 
+        SS_SSID, 
+        SS_PASSWORD, 
         IPAddress(192, 168, 1, 2), 
         IPAddress(192, 168, 1, 1), 
         IPAddress(255, 255, 255, 0)
@@ -97,7 +106,24 @@ void InitWebServer() {
         server.send(200, "application/javascript", f.readString());
         f.close();
     });
-
+    
+    server.on("/card.html", HTTP_GET, []() {
+        Log("HTTP", "Serving card.html");
+        File f = LittleFS.open("/card.html", "r");
+        server.send(200, "text/html", f.readString());
+        f.close();
+    });
+    
+    server.on("/dynamic-content", HTTP_GET, []() {
+        Log("HTTP", "Serving dynamic content");
+        std::vector<bool> inputStates = GetInputStates();
+        String content = "";
+        if (inputStates[0]) {content += "Object:0"; }
+        if (inputStates[1]) {if (content.length() > 0) content += ","; content += "Object:1"; }
+        if (inputStates[2]) {if (content.length() > 0) content += ","; content += "Object:2"; }
+        server.send(200, "text/html", content);
+    });
+    
     server.on("/jquery-3.7.1.min.js", HTTP_GET, []() {
         Log("HTTP", "Serving jquery-3.7.1.min.js");
         File f = LittleFS.open("/jquery-3.7.1.min.js", "r");
@@ -147,6 +173,15 @@ String getLocalTimeString() {
     return String(buffer);
 }
 
+std::vector<bool> GetInputStates() {
+    std::vector<bool> states;
+    states.push_back(digitalRead(INPUT_0));
+    states.push_back(digitalRead(INPUT_1));
+    states.push_back(digitalRead(INPUT_2));
+    return states;
+}
+
 void loop() {
     server.handleClient();
+
 }

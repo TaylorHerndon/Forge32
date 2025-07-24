@@ -6,7 +6,6 @@
     <title>Forge32 Dashboard</title>
     <link rel="icon" type="image/x-icon" href="static/favicon.ico">
     <link rel="stylesheet" href="style.css">
-    <script src="/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <header>
@@ -27,10 +26,14 @@
             <button id="disconnect-btn" class="button-dark" onclick="disconnectButtonClick()">Disconnect</button>
             <br></br>
         </section>
+        <section id="pages" class="white-border">
+            <div id="dynamic-content"></div>
+        </section>
     </main>
     <script src="/script.js"></script>
     <script>
         setInterval(updateCurrentTime, 1000);
+        setInterval(updateDynamicContent, 1000); // Update dynamic content every second
     </script>
 </body>
 </html>

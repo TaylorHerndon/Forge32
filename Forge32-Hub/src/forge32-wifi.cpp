@@ -13,11 +13,11 @@ bool ConnectToWifi(
     
     if (WiFi.status() == WL_CONNECTED) { return true; }
 
-    // Attempt to connect to WIFI up to three times.
-    for (int i = 0; i < 3; i++) {
+    // Attempt to connect to WIFI up to six times.
+    for (int i = 0; i < 6; i++) {
         Log("WIFI", "Attempting to connect to: \"" + ssid + "\"");
         WiFi.begin(ssid, password);
-        delay(1000);
+        delay(2000);
         if (WiFi.status() == WL_CONNECTED) { break; }
     }
     
