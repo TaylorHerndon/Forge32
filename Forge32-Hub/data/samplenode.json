@@ -1,0 +1,32 @@
+{
+    "Sample Node": {
+        "Motion Sensor": {
+            "type": "sensor",
+            "dataType": "bool",
+            "range": [0, 1],
+            "events": ["motionDetected"]
+        },
+        "Light Controller": {
+            "type": "control",
+            "dataType": "bool",
+            "range": [0, 1],
+            "events": []
+        },
+        "Temp Sensor": {
+            "type": "sensor",
+            "dataType": "float",
+            "range": [-40, 125],
+            "history": {
+                "interval": "1m",
+                "duration": "24h"
+            },
+            "events": []
+        },
+        "Motor Controller": {
+            "type": "control",
+            "dataType": "float",
+            "range": [0, 180],
+            "events": []
+        }
+    }
+}

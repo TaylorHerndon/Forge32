@@ -49,8 +49,8 @@ void setup() {
 
     // Initialize TCP connection
     bool wifiStatus = ConnectToWifi(
-        SS_SSID, 
-        SS_PASSWORD, 
+        TH_SSID, 
+        TH_PASSWORD, 
         IPAddress(192, 168, 1, 2), 
         IPAddress(192, 168, 1, 1), 
         IPAddress(255, 255, 255, 0)
@@ -116,14 +116,34 @@ void InitWebServer() {
     
     server.on("/dynamic-content", HTTP_GET, []() {
         Log("HTTP", "Serving dynamic content");
-        std::vector<bool> inputStates = GetInputStates();
-        String content = "";
-        if (inputStates[0]) {content += "Object:0"; }
-        if (inputStates[1]) {if (content.length() > 0) content += ","; content += "Object:1"; }
-        if (inputStates[2]) {if (content.length() > 0) content += ","; content += "Object:2"; }
-        server.send(200, "text/html", content);
+        File f = LittleFS.open("/samplenode.json", "r");
+        server.send(200, "text/text", f.readString());
     });
     
+    server.on("/controls/bool.html", HTTP_GET, []() {
+        Log("HTTP", "Serving Control: bool.html");
+        File f = LittleFS.open("/controls/bool.html", "r");
+        server.send(200, "text/html", f.readString());
+    });
+    
+    server.on("/controls/numeric.html", HTTP_GET, []() {
+        Log("HTTP", "Serving Control: numeric.html");
+        File f = LittleFS.open("/controls/numeric.html", "r");
+        server.send(200, "text/html", f.readString());
+    });
+    
+    server.on("/indicators/bool.html", HTTP_GET, []() {
+        Log("HTTP", "Serving Indicator: bool.html");
+        File f = LittleFS.open("/indicators/bool.html", "r");
+        server.send(200, "text/html", f.readString());
+    });
+    
+    server.on("/indicators/numeric.html", HTTP_GET, []() {
+        Log("HTTP", "Serving Indicator: numeric.html");
+        File f = LittleFS.open("/indicators/numeric.html", "r");
+        server.send(200, "text/html", f.readString());
+    });
+
     server.on("/jquery-3.7.1.min.js", HTTP_GET, []() {
         Log("HTTP", "Serving jquery-3.7.1.min.js");
         File f = LittleFS.open("/jquery-3.7.1.min.js", "r");

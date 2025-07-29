@@ -22,7 +22,7 @@
         </section>
         <section id="controls" class="white-border">
             <h2>Controls</h2>
-            <button id="connect-btn" class="button-green" onclick="connectButtonClick()">Connect</button>
+            <button id="connect-btn" class="button-green" onclick="updateDynamicContent()">Connect</button>
             <button id="disconnect-btn" class="button-dark" onclick="disconnectButtonClick()">Disconnect</button>
             <br></br>
         </section>
@@ -33,7 +33,6 @@
     <script src="/script.js"></script>
     <script>
         setInterval(updateCurrentTime, 1000);
-        setInterval(updateDynamicContent, 1000); // Update dynamic content every second
     </script>
 </body>
 </html>
