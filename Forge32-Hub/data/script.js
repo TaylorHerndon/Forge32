@@ -85,7 +85,7 @@ function disconnectButtonClick() {
 }
 
 function updateCurrentTime() {
-    fetch("current-time").then(response => response.text()).then(data => {
-        document.getElementById('current-time').innerHTML = currentTimeRequest.responseText;
+    fetch("/current-time").then(response => response.text()).then(data => {
+        document.getElementById('current-time').innerHTML = data;
     })
 }

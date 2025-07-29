@@ -119,30 +119,6 @@ void InitWebServer() {
         File f = LittleFS.open("/samplenode.json", "r");
         server.send(200, "text/text", f.readString());
     });
-    
-    server.on("/controls/bool.html", HTTP_GET, []() {
-        Log("HTTP", "Serving Control: bool.html");
-        File f = LittleFS.open("/controls/bool.html", "r");
-        server.send(200, "text/html", f.readString());
-    });
-    
-    server.on("/controls/numeric.html", HTTP_GET, []() {
-        Log("HTTP", "Serving Control: numeric.html");
-        File f = LittleFS.open("/controls/numeric.html", "r");
-        server.send(200, "text/html", f.readString());
-    });
-    
-    server.on("/indicators/bool.html", HTTP_GET, []() {
-        Log("HTTP", "Serving Indicator: bool.html");
-        File f = LittleFS.open("/indicators/bool.html", "r");
-        server.send(200, "text/html", f.readString());
-    });
-    
-    server.on("/indicators/numeric.html", HTTP_GET, []() {
-        Log("HTTP", "Serving Indicator: numeric.html");
-        File f = LittleFS.open("/indicators/numeric.html", "r");
-        server.send(200, "text/html", f.readString());
-    });
 
     server.on("/jquery-3.7.1.min.js", HTTP_GET, []() {
         Log("HTTP", "Serving jquery-3.7.1.min.js");
@@ -151,7 +127,7 @@ void InitWebServer() {
         f.close();
     });
 
-    server.on("/servertime", HTTP_GET, []() {
+    server.on("/current-time", HTTP_GET, []() {
         Log("HTTP", "Serving servertime.");
         String currentTime = getLocalTimeString();
         if (currentTime.isEmpty()) {
