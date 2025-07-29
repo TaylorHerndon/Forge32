@@ -35,8 +35,7 @@ Describes node capabilities in JSON format.
 `REGISTER`
 ```JSON
 {
-    "id": "node123",
-    "capabilities": {
+    "Node Name": {
         "tempSensor": {
             "type": "sensor",
             "dataType": "float",
